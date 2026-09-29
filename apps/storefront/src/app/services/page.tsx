@@ -21,8 +21,8 @@ export default function ServicesPage() {
   return (
     <main className="mx-auto max-w-6xl px-5 py-10 lg:px-8 lg:py-14">
       <div className="mb-8">
-        <span className="text-xs font-bold occult-red">السحر والطلاسم والنجوم</span>
-        <h1 className="mt-2 text-3xl font-black sm:text-4xl">اختر العمل</h1>
+        <span className="text-xs font-bold occult-gold">السحر والطلاسم والنجوم</span>
+        <h1 className="mt-2 text-3xl font-black occult-gold sm:text-4xl">اختر العمل</h1>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
@@ -43,8 +43,8 @@ export default function ServicesPage() {
                   {service.icon.startsWith('/') ? <img src={service.icon} alt="" className="h-11 w-11 object-contain" /> : service.icon}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-bold">{service.title}</span>
-                  <span className="mt-1 block truncate text-xs text-[#756963]">{service.short}</span>
+                  <span className="block font-bold occult-gold">{service.title}</span>
+                  <span className="mt-1 block truncate text-xs occult-gold-soft">{service.short}</span>
                 </span>
                 <span className="shrink-0 font-bold occult-red">{service.price.toFixed(2)} €</span>
               </div>
@@ -55,8 +55,8 @@ export default function ServicesPage() {
         <section className="rounded-[1.75rem] border border-[#3b151a] bg-[#090508] p-6">
           <div className="flex items-center justify-between border-b border-[#3b151a] pb-5">
             <div>
-              <p className="text-xs text-[#756963]">العمل المختار</p>
-              <h2 className="mt-1 font-black">{selected.title}</h2>
+              <p className="text-xs occult-gold-soft">العمل المختار</p>
+              <h2 className="mt-1 font-black occult-gold">{selected.title}</h2>
             </div>
             <span className="text-xl font-black occult-red">{selected.price.toFixed(2)} €</span>
           </div>
@@ -92,7 +92,7 @@ export default function ServicesPage() {
           <div className="mt-6 rounded-xl bg-[#050306] p-4">
             <div className="flex items-center justify-between text-sm">
               <span className="text-[#756963]">المجموع</span>
-              <strong>{selected.price.toFixed(2)} €</strong>
+              <strong className="occult-gold">{selected.price.toFixed(2)} €</strong>
             </div>
           </div>
 
