@@ -89,6 +89,20 @@ export async function createOrder(input: {
   return rows[0].id;
 }
 
+export async function updateOrderById(
+  orderId: string,
+  patch: Record<string, unknown>,
+) {
+  return supabaseRequest('orders?id=eq.' + encodeURIComponent(orderId), {
+    method: 'PATCH',
+    headers: { Prefer: 'return=minimal' },
+    body: JSON.stringify({
+      ...patch,
+      updated_at: new Date().toISOString(),
+    }),
+  });
+}
+
 export async function updateOrderBySession(
   sessionId: string,
   patch: Record<string, unknown>,
