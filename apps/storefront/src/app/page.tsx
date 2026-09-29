@@ -61,7 +61,9 @@ export default function Home() {
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
             <Link key={service.title} href="/services" className="group rounded-3xl border border-[#3b151a] occult-card horror-card p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7f0b18]/50 hover:occult-button/[0.06]">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-2xl">{service.icon}</div>
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-2xl">
+                {service.icon.startsWith('/') ? <img src={service.icon} alt="" className="h-11 w-11 object-contain" /> : service.icon}
+              </div>
               <h3 className="mt-5 text-lg font-bold">{service.title}</h3>
               <p className="mt-3 min-h-14 text-sm leading-7 text-[#8f8177]">{service.text}</p>
               <div className="mt-5 font-bold occult-red">{service.price}</div>
