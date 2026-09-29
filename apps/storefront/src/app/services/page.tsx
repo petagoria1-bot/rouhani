@@ -3,10 +3,10 @@
 import { useMemo, useState } from 'react';
 
 const services = [
-  { id: 'love', icon: '✦', title: 'المحبة والمودة', description: 'ملف رمزي مخصص للتأمل في المحبة والمودة والتقارب.', price: 19.9 },
-  { id: 'reconcile', icon: '◈', title: 'المصالحة والتقارب', description: 'تجربة رمزية حول نية المصالحة وفتح مساحة للحوار.', price: 24.9 },
-  { id: 'marriage', icon: '⛧', title: 'العلاقة الزوجية', description: 'ملف مخصص يركز على المودة والنية الطيبة داخل العلاقة.', price: 29.9 },
-  { id: 'reading', icon: '☾', title: 'قراءة روحانية', description: 'قراءة رمزية شخصية وفق المعلومات التي تختار مشاركتها.', price: 14.9 },
+  { id: 'love', icon: '✦', title: 'أعمال المحبة والعطف والتهييج', description: 'عمل مستوحى من أبواب المحبة والعطف والتهييج الواردة في كتب الطلاسم القديمة.', price: 19.9 },
+  { id: 'reconcile', icon: '◈', title: 'أعمال الوصال والتقريب', description: 'صياغة مستوحاة من تقاليد الوصال والتقريب في المخطوطات القديمة.', price: 24.9 },
+  { id: 'marriage', icon: '⛧', title: 'أعمال الألفة والمودة', description: 'ملف مخصص مستوحى من أبواب الألفة والمودة والقبول.', price: 29.9 },
+  { id: 'reading', icon: '☾', title: 'الطلاسم والنجوم', description: 'قراءة في الرموز والأوفاق وأبواب الطلاسم كما ترد في المصادر التراثية.', price: 14.9 },
 ];
 
 export default function ServicesPage() {
@@ -42,7 +42,7 @@ export default function ServicesPage() {
       <div className="mb-10">
         <span className="text-sm font-bold occult-red">الطلاسم والعلوم الخفية</span>
         <h1 className="mt-2 text-4xl font-black">اختر طقسك</h1>
-        <p className="mt-4 max-w-2xl leading-8 text-[#8f8177]">اختر العمل الذي تريد إعداد ملفه، puis indiquez uniquement les éléments nécessaires à sa personnalisation.</p>
+        <p className="mt-4 max-w-2xl leading-8 text-[#8f8177]">اختر الباب الذي تريد إعداد ملفه، ثم أدخل العناصر اللازمة لتخصيصه.</p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr]">
@@ -110,7 +110,7 @@ export default function ServicesPage() {
                 <div className="border-t border-[#3b151a] pt-4 flex justify-between text-base"><span>المبلغ</span><strong className="occult-red">{selected.price.toFixed(2)} €</strong></div>
               </div>
               <div className="mt-5 rounded-2xl border border-amber-300/10 bg-amber-300/5 p-4 text-xs leading-6 text-amber-100/70">
-                الخدمة رمزية وروحانية ولا تمثل ضمانًا لنتيجة عاطفية أو قدرة على التحكم في إرادة شخص آخر.
+                هذه الأعمال مستوحاة من نصوص ومخطوطات تراثية في السحر والطلاسم. لا نعرض ادعاءً علميًا بإمكانية التحكم في إرادة شخص آخر أو ضمان نتيجة خارقة.
               </div>
               <div className="mt-7 flex gap-3">
                 <button onClick={() => setStep(2)} className="flex-1 rounded-2xl border border-[#3b151a] px-5 py-4 font-bold">تعديل</button>
