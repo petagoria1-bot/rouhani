@@ -12,6 +12,7 @@ const services = [
 export default function ServicesPage() {
   const [selected, setSelected] = useState(services[0]);
   const [name, setName] = useState('');
+  const [motherName, setMotherName] = useState('');
   const [otherName, setOtherName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [relationship, setRelationship] = useState('زوج/زوجة');
@@ -32,6 +33,7 @@ export default function ServicesPage() {
         body: JSON.stringify({
           serviceId: selected.id,
           name: name.trim(),
+          motherName: motherName.trim(),
           otherName: otherName.trim(),
           birthDate,
           relationship,
@@ -99,6 +101,11 @@ export default function ServicesPage() {
             <div>
               <label className="text-sm font-bold">اسمك الأول</label>
               <input value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="محمد" />
+            </div>
+
+            <div>
+              <label className="text-sm font-bold">اسم الأم للشخص موضوع الجدول</label>
+              <input value={motherName} onChange={(e) => setMotherName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="فاطمة" />
             </div>
 
             <div>
