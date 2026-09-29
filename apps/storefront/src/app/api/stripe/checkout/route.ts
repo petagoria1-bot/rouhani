@@ -1,7 +1,7 @@
 'use server';
 
 import { NextResponse } from 'next/server';
-import { createCustomer, createOrder, isSupabaseConfigured, updateOrderBySession } from '../../../../lib/supabase-admin';
+import { createCustomer, createOrder, isSupabaseConfigured, updateOrderById } from '../../../../lib/supabase-admin';
 
 export const runtime = 'nodejs';
 
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'تعذر بدء عملية الدفع.' }, { status: 502 });
     }
 
-    await updateOrderBySession(data.id, {
+    await updateOrderById(orderId, {
       stripe_checkout_session_id: data.id,
     });
 
