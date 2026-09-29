@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
 const services = [
-  { icon: '❤️', title: 'المحبة والمودة', text: 'تجربة رمزية مخصصة تركز على مشاعر المودة والتقارب.', price: '19.90 €' },
-  { icon: '🕊️', title: 'المصالحة والتقارب', text: 'ملف روحاني رمزي يساعدك على التعبير عن نيتك للمصالحة.', price: '24.90 €' },
-  { icon: '💍', title: 'العلاقة الزوجية', text: 'تجربة مخصصة حول المودة والحوار والنية الطيبة داخل العلاقة.', price: '29.90 €' },
-  { icon: '🌙', title: 'قراءة روحانية', text: 'قراءة رمزية شخصية مبنية على المعلومات التي تختار مشاركتها.', price: '14.90 €' },
+  { icon: '⛧', title: 'أعمال المحبة والعطف والتهييج', text: 'باب من أبواب السحر والطلاسم كما ترد تسمياته في المخطوطات التراثية.', price: '19.90 €' },
+  { icon: '◈', title: 'أعمال الوصال والتقريب', text: 'عمل من أبواب الوصال والتقريب الواردة في تقاليد الطلاسم القديمة.', price: '24.90 €' },
+  { icon: '✦', title: 'أعمال الألفة والمودة', text: 'ملف مخصص مستوحى من أبواب الألفة والمودة والقبول في المصادر التراثية.', price: '29.90 €' },
+  { icon: '☾', title: 'الأوفاق والعزائم والطلاسم', text: 'استكشاف لأبواب الأوفاق والعزائم والطلاسم والنجوم في التراث السحري.', price: '14.90 €' },
 ];
 
 export default function Home() {
@@ -15,16 +15,16 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
           <div className="max-w-3xl relative z-10">
             <span className="inline-flex rounded-full border border-[#7f0b18]/50 bg-black/50 px-4 py-2 text-sm text-[#d7c9b5] tracking-wide">
-              ⛧ مخطوطات روحانية — طقوس رمزية
+              ⛧ السحر والطلاسم والنجوم
             </span>
             <h1 className="mt-7 text-5xl font-black leading-tight tracking-tight sm:text-6xl">
               لا تدخل هنا
               <span className="block bg-gradient-to-l from-[#e2b8ad] via-[#c7a69b] to-[#8f0d1b] bg-clip-text text-transparent">
-                les rites, les symboles et les ombres
+                السحر والطلاسم<br className="hidden sm:block" /> والأوفاق والعزائم
               </span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#bcaea4]">
-              اختر تجربتك الروحانية، خصصها بالمعلومات التي ترغب في مشاركتها، ثم احصل على ملف رقمي أنيق بصيغة PDF.
+              استكشف أبواب السحر والطلاسم والأوفاق والعزائم كما ترد في المخطوطات التراثية، واختر العمل الذي تريد طلبه ثم احصل على ملفك بصيغة PDF.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link href="/services" className="rounded-2xl occult-button px-7 py-4 font-bold shadow-lg shadow-[#4d0710]/40 transition hover:bg-[#ad1224]">
@@ -35,12 +35,12 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-5 text-xs text-[#756963]">
-              المحتوى روحاني ورمزي ولا يضمن تغيير إرادة أو مشاعر شخص آخر.
+              المحتوى مبني على مصطلحات وأبواب واردة في مصادر تراثية في السحر والطلاسم والنجوم، ولا نعرضه كحقيقة علمية مثبتة.
             </p>
           </div>
 
-          <div className="mt-16 flex flex-col items-center gap-8 lg:absolute lg:left-8 lg:top-20 lg:mt-0 lg:w-[430px]" lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px]">
-            {['☾ النية', '⛧ الرموز', '◈ الطقوس', '✦ المخطوطات'].map((item) => (
+          <div className="mt-16 flex flex-col items-center gap-8 lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px]">
+            {['⛧ السحر', '◈ الطلاسم', '✦ الأوفاق', '☾ النجوم'].map((item) => (
               <div key={item} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-7 text-center backdrop-blur">
                 <div className="text-3xl">{item.split(' ')[0]}</div>
                 <div className="mt-3 font-semibold text-[#d7c9b5]">{item.slice(2)}</div>
@@ -54,9 +54,9 @@ export default function Home() {
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <span className="text-sm font-bold occult-red">خدمات مختارة</span>
-            <h2 className="mt-2 text-3xl font-black">اختر تجربتك</h2>
+            <h2 className="mt-2 text-3xl font-black">اختر العمل</h2>
           </div>
-          <Link href="/services" className="text-sm font-bold occult-red hover:text-[#d7c9b5]">عرض جميع الخدمات ←</Link>
+          <Link href="/services" className="text-sm font-bold occult-red hover:text-[#d7c9b5]">عرض جميع الأعمال ←</Link>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
@@ -73,14 +73,14 @@ export default function Home() {
       <section id="how" className="border-y border-[#3b151a] bg-[#070407] horror-vignette">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-sm font-bold text-[#b69a8c]">بسيطة وواضحة</span>
-            <h2 className="mt-2 text-3xl font-black">كيف تعمل روحاني؟</h2>
+            <span className="text-sm font-bold text-[#b69a8c]">من المخطوطات إلى الطلب</span>
+            <h2 className="mt-2 text-3xl font-black">كيف يتم طلب العمل؟</h2>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
-              ['01', 'اختر الخدمة', 'اختر التجربة التي تناسب هدفك وحدد الملف الذي تريد الحصول عليه.'],
-              ['02', 'خصص طلبك', 'أدخل الحد الأدنى من المعلومات اللازمة لتخصيص التجربة.'],
-              ['03', 'احصل على ملفك', 'بعد إتمام الدفع، يصبح ملفك الرقمي متاحًا للتنزيل من حسابك.'],
+              ['01', 'اختر الخدمة', 'اختر الباب الذي تريد طلبه من الأعمال المعروضة.'],
+              ['02', 'خصص طلبك', 'أدخل المعلومات المطلوبة في نموذج الطلب.'],
+              ['03', 'احصل على ملفك', 'بعد إتمام الطلب والدفع، يصبح ملفك الرقمي متاحًا للتنزيل.'],
             ].map(([n, title, text]) => (
               <div key={n} className="rounded-3xl border border-[#3b151a] p-7">
                 <span className="text-sm font-black occult-red">{n}</span>
@@ -96,9 +96,9 @@ export default function Home() {
         <div className="rounded-[2rem] border border-[#7f0b18]/40 bg-[#090407] p-10 occult-glow horror-card">
           <div className="mx-auto horror-seal" aria-hidden="true" />
           <h2 className="mt-4 text-3xl font-black">هل تجرؤ على فتح المخطوطة؟</h2>
-          <p className="mx-auto mt-4 max-w-xl leading-8 text-[#8f8177]">مخطوطات رقمية مستوحاة من تقاليد الطلاسم القديمة، مصممة كأعمال رمزية غامضة داخل تجربة مظلمة.</p>
+          <p className="mx-auto mt-4 max-w-xl leading-8 text-[#8f8177]">مخطوطات وأعمال رقمية مستوحاة من أبواب السحر والطلاسم والأوفاق والعزائم والنجوم في المصادر التراثية.</p>
           <Link href="/services" className="mt-7 inline-flex rounded-2xl bg-white px-7 py-4 font-bold text-[#12070a] hover:bg-slate-100">
-            اختيار خدمة
+            اختيار عمل
           </Link>
         </div>
       </section>
