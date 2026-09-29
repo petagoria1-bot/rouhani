@@ -5,7 +5,7 @@ export const Header: React.FC = () => (
   <header className="sticky top-0 z-50 border-b border-[#3b151a] bg-[#050306]/94 backdrop-blur-xl">
     <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
       <Link href="/" className="flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#8f0d1b] to-[#4d0710] text-xl shadow-lg shadow-[#4d0710]/40">✦</span>
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#7f0b18]/50 bg-[#100407] text-xl text-[#c21d31] shadow-[0_0_28px_rgba(127,11,24,.25)]">⛧</span>
         <span className="text-xl font-black tracking-tight">روحاني</span>
       </Link>
 
