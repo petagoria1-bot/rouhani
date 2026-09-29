@@ -35,7 +35,7 @@ export default function Home() {
               </a>
             </div>
             <p className="mt-5 text-xs text-[#756963]">
-              المحتوى مبني على مصطلحات وأبواب واردة في مصادر تراثية في السحر والطلاسم والنجوم، ولا نعرضه كحقيقة علمية مثبتة.
+              أعمال رقمية مستوحاة من مصطلحات وأبواب المصادر التراثية.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ export default function Home() {
       <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="text-sm font-bold occult-red">خدمات مختارة</span>
+            <span className="text-sm font-bold occult-red">الأعمال</span>
             <h2 className="mt-2 text-3xl font-black">اختر العمل</h2>
           </div>
           <Link href="/services" className="text-sm font-bold occult-red hover:text-[#d7c9b5]">عرض جميع الأعمال ←</Link>
@@ -74,13 +74,13 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <div className="max-w-2xl">
             <span className="text-sm font-bold text-[#b69a8c]">من المخطوطات إلى الطلب</span>
-            <h2 className="mt-2 text-3xl font-black">كيف يتم طلب العمل؟</h2>
+            <h2 className="mt-2 text-3xl font-black">اطلب عملك</h2>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
-              ['01', 'اختر الخدمة', 'اختر الباب الذي تريد طلبه من الأعمال المعروضة.'],
-              ['02', 'خصص طلبك', 'أدخل المعلومات المطلوبة في نموذج الطلب.'],
-              ['03', 'احصل على ملفك', 'بعد إتمام الطلب والدفع، يصبح ملفك الرقمي متاحًا للتنزيل.'],
+              ['01', 'اختر الخدمة', 'اختر العمل المناسب.'],
+              ['02', 'خصص طلبك', 'أدخل بياناتك المطلوبة.'],
+              ['03', 'احصل على ملفك', 'ادفع ثم استلم ملفك الرقمي.'],
             ].map(([n, title, text]) => (
               <div key={n} className="rounded-3xl border border-[#3b151a] p-7">
                 <span className="text-sm font-black occult-red">{n}</span>
@@ -96,7 +96,7 @@ export default function Home() {
         <div className="rounded-[2rem] border border-[#7f0b18]/40 bg-[#090407] p-10 occult-glow horror-card">
           <div className="mx-auto horror-seal" aria-hidden="true" />
           <h2 className="mt-4 text-3xl font-black">هل تجرؤ على فتح المخطوطة؟</h2>
-          <p className="mx-auto mt-4 max-w-xl leading-8 text-[#8f8177]">مخطوطات وأعمال رقمية مستوحاة من أبواب السحر والطلاسم والأوفاق والعزائم والنجوم في المصادر التراثية.</p>
+          <p className="mx-auto mt-4 max-w-xl leading-8 text-[#8f8177]">اختر العمل وابدأ الطلب مباشرة.</p>
           <Link href="/services" className="mt-7 inline-flex rounded-2xl bg-white px-7 py-4 font-bold text-[#12070a] hover:bg-slate-100">
             اختيار عمل
           </Link>
