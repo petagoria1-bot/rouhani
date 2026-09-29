@@ -1,5 +1,3 @@
-'use server';
-
 import { NextResponse } from 'next/server';
 import { createCustomer, createOrder, isSupabaseConfigured, updateOrderById } from '../../../../lib/supabase-admin';
 
