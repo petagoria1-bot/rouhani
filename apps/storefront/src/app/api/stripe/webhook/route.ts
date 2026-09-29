@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
-import { isSupabaseConfigured, registerWebhookEvent, updateOrderBySession } from '@/lib/supabase-admin';
+import { isSupabaseConfigured, registerWebhookEvent, updateOrderBySession } from '../../../../lib/supabase-admin';
 
 export const runtime = 'nodejs';
 
