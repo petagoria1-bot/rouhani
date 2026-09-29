@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+<g stroke="#d8c9b6" stroke-width="3">
+<circle cx="256" cy="256" r="238"/><circle cx="256" cy="256" r="224"/><circle cx="256" cy="256" r="194"/>
+</g>
+<g stroke="#9b1828" stroke-width="3">
+<path d="M256 62L294 218L450 256L294 294L256 450L218 294L62 256L218 218Z"/>
+<path d="M256 91L315 197L421 256L315 315L256 421L197 315L91 256L197 197Z"/>
+</g>
+<g stroke="#d8c9b6" stroke-width="2">
+<circle cx="256" cy="256" r="145"/><circle cx="256" cy="256" r="106"/>
+<path d="M256 101V411M101 256H411M147 147L365 365M365 147L147 365"/>
+</g>
+<g stroke="#0b0809" stroke-width="5">
+<path d="M256 142L286 220L368 256L286 292L256 370L226 292L144 256L226 220Z" fill="#d8c9b6"/>
+<path d="M256 174L277 235L338 256L277 277L256 338L235 277L174 256L235 235Z"/>
+<circle cx="256" cy="256" r="48"/>
+</g>
+<g stroke="#0b0809" stroke-width="2">
+<path d="M256 208V304M208 256H304M222 222L290 290M290 222L222 290"/>
+<path d="M256 160V352M160 256H352"/>
+</g>
+<g fill="#9b1828">
+<circle cx="256" cy="142" r="7"/><circle cx="370" cy="256" r="7"/><circle cx="256" cy="370" r="7"/><circle cx="142" cy="256" r="7"/>
+<circle cx="256" cy="207" r="4"/><circle cx="305" cy="256" r="4"/><circle cx="256" cy="305" r="4"/><circle cx="207" cy="256" r="4"/>
+</g>
+<g stroke="#d8c9b6" stroke-width="2">
+<path d="M128 128L181 181M384 128L331 181M128 384L181 331M384 384L331 331"/>
+</g>
+<g fill="#d8c9b6">
+<path d="M256 69l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/>
+<path d="M443 256l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/>
+<path d="M256 443l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/>
+<path d="M69 256l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/>
+</g>
+<!-- celestial constellations -->
+<g stroke="#d8c9b6" stroke-width="2" fill="#d8c9b6">
+<path d="M115 151L145 126L177 139L198 110"/><circle cx="115" cy="151" r="3"/><circle cx="145" cy="126" r="3"/><circle cx="177" cy="139" r="3"/><circle cx="198" cy="110" r="3"/>
+<path d="M314 110L341 139L370 126L398 151"/><circle cx="314" cy="110" r="3"/><circle cx="341" cy="139" r="3"/><circle cx="370" cy="126" r="3"/><circle cx="398" cy="151" r="3"/>
+<path d="M112 351L143 378L174 365L198 397"/><circle cx="112" cy="351" r="3"/><circle cx="143" cy="378" r="3"/><circle cx="174" cy="365" r="3"/><circle cx="198" cy="397" r="3"/>
+<path d="M314 397L338 365L369 378L400 351"/><circle cx="314" cy="397" r="3"/><circle cx="338" cy="365" r="3"/><circle cx="369" cy="378" r="3"/><circle cx="400" cy="351" r="3"/>
+</g>
+</svg>
