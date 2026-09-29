@@ -46,6 +46,7 @@ export async function supabaseRequest<T = unknown>(
 
 export async function createCustomer(input: {
   firstName: string;
+  motherName?: string;
   otherName?: string;
   birthDate?: string;
   relationship?: string;
@@ -55,6 +56,7 @@ export async function createCustomer(input: {
     headers: { Prefer: 'return=representation' },
     body: JSON.stringify({
       first_name: input.firstName,
+      mother_name: input.motherName || null,
       other_name: input.otherName || null,
       birth_date: input.birthDate || null,
       relationship: input.relationship || null,
