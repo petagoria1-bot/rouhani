@@ -15,8 +15,40 @@ export default function ServicesPage() {
   const [otherName, setOtherName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [relationship, setRelationship] = useState('زوج/زوجة');
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [error, setError] = useState('');
 
-  const valid = name.trim().length >= 2;
+  const valid = name.trim().length >= 2 && !isCheckingOut;
+
+  const handleCheckout = async () => {
+    if (name.trim().length < 2 || isCheckingOut) return;
+    setError('');
+    setIsCheckingOut(true);
+
+    try {
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          serviceId: selected.id,
+          name: name.trim(),
+          otherName: otherName.trim(),
+          birthDate,
+          relationship,
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.url) {
+        throw new Error(data.error || 'تعذر بدء عملية الدفع.');
+      }
+
+      window.location.assign(data.url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'تعذر بدء عملية الدفع.');
+      setIsCheckingOut(false);
+    }
+  };
 
   return (
     <main className="mx-auto max-w-6xl px-5 py-10 lg:px-8 lg:py-14">
@@ -30,6 +62,8 @@ export default function ServicesPage() {
           {services.map((service) => (
             <button
               key={service.id}
+              aria-pressed={selected.id === service.id}
+              aria-label={`اختيار ${service.title} — ${service.price.toFixed(2)} يورو`}
               type="button"
               onClick={() => setSelected(service)}
               className={`w-full rounded-2xl border p-4 text-right transition ${
@@ -96,16 +130,24 @@ export default function ServicesPage() {
             </div>
           </div>
 
+          {error && (
+            <div role="alert" className="mt-4 rounded-xl border border-[#7f0b18] bg-[#18070b] px-4 py-3 text-center text-xs leading-5 text-[#d8a8a8]">
+              {error}
+            </div>
+          )}
+
           <button
             type="button"
             disabled={!valid}
+            onClick={handleCheckout}
+            aria-busy={isCheckingOut}
             className="mt-5 w-full rounded-xl occult-button px-5 py-4 font-black transition hover:bg-[#ad1224] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            متابعة إلى الدفع — {selected.price.toFixed(2)} €
+            {isCheckingOut ? 'جارٍ فتح صفحة الدفع…' : `الدفع الآمن — ${selected.price.toFixed(2)} €`}
           </button>
 
           <p className="mt-3 text-center text-[11px] leading-5 text-[#5f514c]">
-            بعد ربط بوابة الدفع، ينتقل العميل مباشرة إلى صفحة الدفع ثم إلى تسليم الملف.
+            سيتم تحويلك إلى Stripe لإتمام الدفع بأمان. لا يتم تأكيد الطلب إلا بعد تأكيد الدفع.
           </p>
         </section>
       </div>
