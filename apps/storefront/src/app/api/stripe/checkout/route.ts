@@ -25,6 +25,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const serviceId = clean(body?.serviceId, 32);
     const name = clean(body?.name, 80);
+    const motherName = clean(body?.motherName, 80);
     const otherName = clean(body?.otherName, 80);
     const birthDate = clean(body?.birthDate, 20);
     const relationship = clean(body?.relationship, 40);
@@ -40,6 +41,7 @@ export async function POST(request: Request) {
 
     const customerId = await createCustomer({
       firstName: name,
+      motherName,
       otherName,
       birthDate,
       relationship,
@@ -65,6 +67,7 @@ export async function POST(request: Request) {
     params.set('metadata[service_id]', serviceId);
     params.set('metadata[service_name]', service.name);
     params.set('metadata[name]', name);
+    if (motherName) params.set('metadata[mother_name]', motherName);
     if (otherName) params.set('metadata[other_name]', otherName);
     if (birthDate) params.set('metadata[birth_date]', birthDate);
     if (relationship) params.set('metadata[relationship]', relationship);
