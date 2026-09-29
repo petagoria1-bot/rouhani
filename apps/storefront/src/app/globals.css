@@ -2,7 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* استيراد خط مناسب للغة العربية إن وجد */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  font-family: Tahoma, Arial, 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.14), transparent 28rem),
+    radial-gradient(circle at 85% 20%, rgba(217, 70, 239, 0.10), transparent 24rem),
+    #090714;
+}
+
+::selection {
+  background: rgba(216, 180, 254, 0.3);
+}
+
+.ornament {
+  background-image:
+    radial-gradient(circle at center, rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size: 18px 18px;
 }
