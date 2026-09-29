@@ -43,7 +43,7 @@ export default function Home() {
             {[
               ['/icons/sihr.svg', 'السحر'],
               ['/icons/talismans.svg', 'الطلاسم'],
-              ['✦', 'الأوفاق'],
+              ['/icons/awfaq.svg', 'الأوفاق'],
               ['☾', 'النجوم'],
             ].map(([icon, label]) => (
               <div key={label} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-7 text-center backdrop-blur">
