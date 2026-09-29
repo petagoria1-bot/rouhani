@@ -4,27 +4,65 @@
 
 :root {
   color-scheme: dark;
+  --occult-black: #050306;
+  --occult-red: #7f0b18;
+  --occult-red-bright: #a51222;
+  --occult-burgundy: #26070d;
+  --occult-bone: #d7c9b5;
+  --occult-muted: #8f8177;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: Tahoma, Arial, 'Segoe UI', sans-serif;
   background:
-    radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.14), transparent 28rem),
-    radial-gradient(circle at 85% 20%, rgba(217, 70, 239, 0.10), transparent 24rem),
-    #090714;
+    radial-gradient(circle at 50% 0%, rgba(127, 11, 24, .16), transparent 34rem),
+    radial-gradient(circle at 85% 65%, rgba(80, 5, 15, .12), transparent 28rem),
+    var(--occult-black);
+  color: var(--occult-bone);
 }
 
 ::selection {
-  background: rgba(216, 180, 254, 0.3);
+  background: rgba(127, 11, 24, .55);
+  color: #fff;
 }
 
 .ornament {
   background-image:
-    radial-gradient(circle at center, rgba(255,255,255,.08) 1px, transparent 1px);
-  background-size: 18px 18px;
+    radial-gradient(circle at center, rgba(180, 145, 130, .11) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.occult-glow {
+  box-shadow: 0 0 55px rgba(127, 11, 24, .16), inset 0 0 45px rgba(0,0,0,.35);
+}
+
+.occult-border {
+  border-color: rgba(127, 11, 24, .38) !important;
+}
+
+.occult-red {
+  color: #d43a4a !important;
+}
+
+.occult-button {
+  background: linear-gradient(135deg, #8f0d1b, #5b0711) !important;
+  color: #f4e9dc !important;
+  box-shadow: 0 10px 30px rgba(91, 7, 17, .35);
+}
+
+.occult-button:hover {
+  background: linear-gradient(135deg, #ad1224, #720914) !important;
+}
+
+.occult-card {
+  background: linear-gradient(145deg, rgba(38,7,13,.58), rgba(8,5,9,.82)) !important;
+  border-color: rgba(127,11,24,.32) !important;
+}
+
+.occult-card:hover {
+  border-color: rgba(165,18,34,.65) !important;
+  background: linear-gradient(145deg, rgba(52,8,15,.72), rgba(10,5,9,.9)) !important;
 }
