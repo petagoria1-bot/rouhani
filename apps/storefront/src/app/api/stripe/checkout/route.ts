@@ -1,7 +1,7 @@
 'use server';
 
 import { NextResponse } from 'next/server';
-import { createCustomer, createOrder, isSupabaseConfigured, updateOrderBySession } from '@/lib/supabase-admin';
+import { createCustomer, createOrder, isSupabaseConfigured, updateOrderBySession } from '../../../../lib/supabase-admin';
 
 export const runtime = 'nodejs';
 
