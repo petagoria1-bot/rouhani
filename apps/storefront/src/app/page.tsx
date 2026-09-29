@@ -39,7 +39,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-16 flex flex-col items-center gap-8 lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px]">
+          <div className="mt-16 grid w-full grid-cols-2 gap-4 sm:gap-5 lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px] lg:grid-cols-2">
             {[
               ['/icons/sihr.svg', 'السحر'],
               ['/icons/talismans.svg', 'الطلاسم'],
@@ -48,9 +48,9 @@ export default function Home() {
               ['/icons/mahabbah.svg', 'المحبة'],
               ['/icons/stars.svg', 'النجوم'],
             ].map(([icon, label]) => (
-              <div key={label} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-7 text-center backdrop-blur">
-                <div className="flex h-16 items-center justify-center text-3xl">
-                  {icon.startsWith('/') ? <img src={icon} alt="" className="h-16 w-16 object-contain" /> : icon}
+              <div key={label} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-5 text-center backdrop-blur">
+                <div className="flex h-20 items-center justify-center text-3xl">
+                  {icon.startsWith('/') ? <img src={icon} alt="" className="h-20 w-20 object-contain" /> : icon}
                 </div>
                 <div className="mt-3 font-semibold text-[#d7c9b5]">{label}</div>
               </div>
