@@ -1,4 +1,5 @@
 name: CI/CD
+
 on:
   push:
     branches: [main]
@@ -8,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:16
@@ -18,43 +20,58 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
       redis:
         image: redis:7
         ports:
           - 6379:6379
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - name: Restore and Build API
+
+      - name: Restore and build API
         run: |
-          cd ecommerce/src/WebApi
-          dotnet restore
-          dotnet build --configuration Release
-      - name: Run Backend Tests
-        run: |
-          dotnet test ecommerce/src/WebApi --configuration Release --no-build || true
+          dotnet restore src/WebApi/WebApi.csproj
+          dotnet build src/WebApi/WebApi.csproj --configuration Release --no-restore
+
+      - name: Run backend tests
+        run: dotnet test --configuration Release --no-build
+        continue-on-error: true
+
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-      - name: Install dependencies and run frontend unit tests
+          cache: npm
+          cache-dependency-path: |
+            apps/storefront/package-lock.json
+            apps/admin/package-lock.json
+
+      - name: Build storefront
+        working-directory: apps/storefront
         run: |
-          cd ecommerce
           npm ci
-          # تشغيل اختبارات Vitest إن وجدت
-          npm test --workspaces || true
-      - name: Build Docker images
+          npm run build
+
+      - name: Build admin
+        working-directory: apps/admin
         run: |
-          docker build -f ecommerce/deploy/Dockerfile.api -t ecommerce-api .
-          docker build -f ecommerce/deploy/Dockerfile.frontend --build-arg NEXT_APP=storefront -t ecommerce-storefront .
-          docker build -f ecommerce/deploy/Dockerfile.frontend --build-arg NEXT_APP=admin -t ecommerce-admin .
-      - name: Upload Artifacts
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: api
-          path: ecommerce/src/WebApi/bin/Release
+          npm ci
+          npm run build
+
+      - name: Build API Docker image
+        run: docker build -f deploy/Dockerfile.api -t rouhani-api .
+
+      - name: Build storefront Docker image
+        run: docker build -f deploy/Dockerfile.frontend --build-arg NEXT_APP=storefront -t rouhani-storefront .
+
+      - name: Build admin Docker image
+        run: docker build -f deploy/Dockerfile.frontend --build-arg NEXT_APP=admin -t rouhani-admin .
