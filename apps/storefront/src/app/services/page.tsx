@@ -13,16 +13,15 @@ export default function ServicesPage() {
   const [selected, setSelected] = useState(services[0]);
   const [name, setName] = useState('');
   const [motherName, setMotherName] = useState('');
-  const [otherName, setOtherName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [relationship, setRelationship] = useState('زوج/زوجة');
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState('');
 
-  const valid = name.trim().length >= 2 && !isCheckingOut;
+  const valid = name.trim().length >= 2 && motherName.trim().length >= 2 && birthDate.length > 0 && relationship.length > 0 && !isCheckingOut;
 
   const handleCheckout = async () => {
-    if (name.trim().length < 2 || isCheckingOut) return;
+    if (!valid) return;
     setError('');
     setIsCheckingOut(true);
 
@@ -34,7 +33,6 @@ export default function ServicesPage() {
           serviceId: selected.id,
           name: name.trim(),
           motherName: motherName.trim(),
-          otherName: otherName.trim(),
           birthDate,
           relationship,
         }),
@@ -99,28 +97,23 @@ export default function ServicesPage() {
 
           <div className="mt-6 space-y-4">
             <div>
-              <label className="text-sm font-bold">اسمك الأول</label>
-              <input value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="محمد" />
+              <label className="text-sm font-bold">اسم الشخص موضوع العمل</label>
+              <input value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="محمد" required />
             </div>
 
             <div>
-              <label className="text-sm font-bold">اسم الأم للشخص موضوع الجدول</label>
-              <input value={motherName} onChange={(e) => setMotherName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="فاطمة" />
-            </div>
-
-            <div>
-              <label className="text-sm font-bold">اسم الطرف الآخر <span className="font-normal text-[#756963]">(اختياري)</span></label>
-              <input value={otherName} onChange={(e) => setOtherName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="سارة" />
+              <label className="text-sm font-bold">اسم الأم للشخص موضوع العمل</label>
+              <input value={motherName} onChange={(e) => setMotherName(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" placeholder="فاطمة" required />
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-bold">تاريخ الميلاد <span className="font-normal text-[#756963]">(اختياري)</span></label>
-                <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" />
+                <label className="text-sm font-bold">تاريخ ميلاد الشخص موضوع العمل</label>
+                <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]" required />
               </div>
               <div>
-                <label className="text-sm font-bold">العلاقة</label>
-                <select value={relationship} onChange={(e) => setRelationship(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]">
+                <label className="text-sm font-bold">علاقتك بالشخص موضوع العمل</label>
+                <select required value={relationship} onChange={(e) => setRelationship(e.target.value)} className="mt-2 w-full rounded-xl border border-[#3b151a] bg-[#050306] px-4 py-3.5 outline-none focus:border-[#a51222]">
                   <option>زوج/زوجة</option>
                   <option>خطيب/خطيبة</option>
                   <option>شريك عاطفي</option>
