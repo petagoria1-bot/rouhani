@@ -4,24 +4,28 @@ import { createHmac, timingSafeEqual } from 'crypto';
 export const runtime = 'nodejs';
 
 function verifyStripeSignature(payload: string, signature: string, secret: string) {
-  const parts = signature.split(',').map((part) => part.split('='));
-  const timestamp = parts.find(([key]) => key === 't')?.[1];
-  const signatures = parts.filter(([key]) => key === 'v1').map(([, value]) => value);
+  const timestampPart = signature.split(',').find((part) => part.startsWith('t='));
+  const timestamp = timestampPart?.slice(2);
+  const signatures = signature
+    .split(',')
+    .filter((part) => part.startsWith('v1='))
+    .map((part) => part.slice(3));
 
   if (!timestamp || signatures.length === 0) return false;
+
   const timestampNumber = Number(timestamp);
   if (!Number.isFinite(timestampNumber) || Math.abs(Date.now() / 1000 - timestampNumber) > 300) {
     return false;
   }
 
-  const signedPayload = `${timestamp}.${payload}`;
-  const expected = createHmac('sha256', secret).update(signedPayload).digest('hex');
+  const expected = createHmac('sha256', secret)
+    .update(`${timestamp}.${payload}`)
+    .digest();
 
   return signatures.some((candidate) => {
     try {
-      const a = Buffer.from(expected, 'utf8');
-      const b = Buffer.from(candidate, 'utf8');
-      return a.length === b.length && timingSafeEqual(a, b);
+      const received = Buffer.from(candidate, 'hex');
+      return received.length === expected.length && timingSafeEqual(expected, received);
     } catch {
       return false;
     }
@@ -43,24 +47,39 @@ export async function POST(request: Request) {
 
   try {
     const event = JSON.parse(payload);
+    const session = event?.data?.object;
+
+    if (!event?.id || !event?.type || !session?.id) {
+      return NextResponse.json({ error: 'Événement Stripe invalide.' }, { status: 400 });
+    }
+
     switch (event.type) {
       case 'checkout.session.completed':
-      case 'checkout.session.async_payment_succeeded':
-        console.log('Stripe payment confirmed', {
-          eventId: event.id,
-          sessionId: event.data?.object?.id,
-          paymentStatus: event.data?.object?.payment_status,
-          serviceId: event.data?.object?.metadata?.service_id,
-        });
+      case 'checkout.session.async_payment_succeeded': {
+        const paymentStatus = session.payment_status;
+        if (paymentStatus === 'paid') {
+          console.log('STRIPE_PAYMENT_CONFIRMED', {
+            eventId: event.id,
+            sessionId: session.id,
+            paymentIntent: session.payment_intent ?? null,
+            serviceId: session.metadata?.service_id ?? null,
+            serviceName: session.metadata?.service_name ?? null,
+            customerName: session.metadata?.name ?? null,
+          });
+        }
         break;
+      }
+
       case 'checkout.session.async_payment_failed':
       case 'checkout.session.expired':
-        console.log('Stripe checkout not completed', {
+        console.log('STRIPE_PAYMENT_NOT_COMPLETED', {
           eventId: event.id,
-          sessionId: event.data?.object?.id,
+          sessionId: session.id,
+          serviceId: session.metadata?.service_id ?? null,
           type: event.type,
         });
         break;
+
       default:
         break;
     }
