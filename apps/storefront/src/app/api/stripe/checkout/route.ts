@@ -1,14 +1,15 @@
 'use server';
 
 import { NextResponse } from 'next/server';
+import { createCustomer, createOrder, isSupabaseConfigured, updateOrderBySession } from '@/lib/supabase-admin';
 
 export const runtime = 'nodejs';
 
-const SERVICES: Record<string, { priceId: string; name: string }> = {
-  love: { priceId: 'price_1UL6j2C2PSFH6OVyIwc4tMUQ', name: 'المحبة والعطف والتهييج' },
-  reconcile: { priceId: 'price_1UL6j6C2PSFH6OVykKlq6fHu', name: 'الوصال والتقريب' },
-  marriage: { priceId: 'price_1UL6j9C2PSFH6OVyRnxpTRZG', name: 'الألفة والمودة' },
-  qabul: { priceId: 'price_1UL6jCC2PSFH6OVyH66mtJQF', name: 'القبول' },
+const SERVICES: Record<string, { priceId: string; name: string; amountCents: number }> = {
+  love: { priceId: 'price_1UL6j2C2PSFH6OVyIwc4tMUQ', name: 'المحبة والعطف والتهييج', amountCents: 1990 },
+  reconcile: { priceId: 'price_1UL6j6C2PSFH6OVykKlq6fHu', name: 'الوصال والتقريب', amountCents: 2490 },
+  marriage: { priceId: 'price_1UL6j9C2PSFH6OVyRnxpTRZG', name: 'الألفة والمودة', amountCents: 2990 },
+  qabul: { priceId: 'price_1UL6jCC2PSFH6OVyH66mtJQF', name: 'القبول', amountCents: 1490 },
 };
 
 const clean = (value: unknown, max = 120) =>
@@ -33,6 +34,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'يرجى التحقق من البيانات.' }, { status: 400 });
     }
 
+    if (!isSupabaseConfigured()) {
+      return NextResponse.json({ error: 'الخدمة غير متاحة حالياً. يرجى المحاولة لاحقاً.' }, { status: 503 });
+    }
+
+    const customerId = await createCustomer({
+      firstName: name,
+      otherName,
+      birthDate,
+      relationship,
+    });
+
+    const orderId = await createOrder({
+      customerId,
+      serviceId,
+      amountCents: service.amountCents,
+      currency: 'eur',
+    });
+
     const origin = new URL(request.url).origin;
     const params = new URLSearchParams();
     params.set('mode', 'payment');
@@ -42,6 +61,7 @@ export async function POST(request: Request) {
     params.set('cancel_url', origin + '/services');
     params.set('locale', 'ar');
     params.set('billing_address_collection', 'auto');
+    params.set('metadata[order_id]', orderId);
     params.set('metadata[service_id]', serviceId);
     params.set('metadata[service_name]', service.name);
     params.set('metadata[name]', name);
@@ -64,6 +84,10 @@ export async function POST(request: Request) {
       console.error('Stripe checkout error', data?.error?.type, data?.error?.message);
       return NextResponse.json({ error: 'تعذر بدء عملية الدفع.' }, { status: 502 });
     }
+
+    await updateOrderBySession(data.id, {
+      stripe_checkout_session_id: data.id,
+    });
 
     return NextResponse.json({ url: data.url });
   } catch (error) {
