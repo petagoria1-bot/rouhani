@@ -5,7 +5,7 @@ import { useState } from 'react';
 const services = [
   { id: 'love', icon: '/icons/tahyij.svg', title: 'المحبة والعطف والتهييج', short: 'أعمال المحبة والعطف والتهييج', price: 19.9 },
   { id: 'reconcile', icon: '◈', title: 'الوصال والتقريب', short: 'أعمال الوصال والتقريب', price: 24.9 },
-  { id: 'marriage', icon: '✦', title: 'الألفة والمودة', short: 'أعمال الألفة والمودة والقبول', price: 29.9 },
+  { id: 'marriage', icon: '/icons/ulfah-mawaddah.svg', title: 'الألفة والمودة', short: 'أعمال الألفة والمودة والقبول', price: 29.9 },
   { id: 'reading', icon: '☾', title: 'الطلاسم والنجوم', short: 'الأوفاق والطلاسم وأبواب النجوم', price: 14.9 },
 ];
 
