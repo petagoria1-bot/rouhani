@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     const relationship = clean(body?.relationship, 40);
     const service = SERVICES[serviceId];
 
-    if (!service || name.length < 2) {
+    if (!service || name.length < 2 || motherName.length < 2 || !birthDate || !relationship) {
       return NextResponse.json({ error: 'يرجى التحقق من البيانات.' }, { status: 400 });
     }
 
@@ -68,7 +68,6 @@ export async function POST(request: Request) {
     params.set('metadata[service_name]', service.name);
     params.set('metadata[name]', name);
     if (motherName) params.set('metadata[mother_name]', motherName);
-    if (otherName) params.set('metadata[other_name]', otherName);
     if (birthDate) params.set('metadata[birth_date]', birthDate);
     if (relationship) params.set('metadata[relationship]', relationship);
 
