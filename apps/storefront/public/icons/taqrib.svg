@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+<g stroke="#d8c9b6" stroke-width="3"><circle cx="256" cy="256" r="238"/><circle cx="256" cy="256" r="224"/><circle cx="256" cy="256" r="194"/></g>
+<g stroke="#9b1828" stroke-width="3"><path d="M256 62L294 218L450 256L294 294L256 450L218 294L62 256L218 218Z"/><path d="M256 92L315 197L421 256L315 315L256 421L197 315L91 256L197 197Z"/></g>
+<g stroke="#d8c9b6" stroke-width="2"><circle cx="256" cy="256" r="155"/><circle cx="256" cy="256" r="112"/><path d="M256 101V411M101 256H411M147 147L365 365M365 147L147 365"/></g>
+<circle cx="256" cy="256" r="67" fill="#d8c9b6" stroke="#0b0809" stroke-width="5"/>
+<g stroke="#0b0809" stroke-width="3" fill="none">
+<path d="M185 256C202 235 220 218 240 213C248 211 253 217 256 224"/>
+<path d="M327 256C310 235 292 218 272 213C264 211 259 217 256 224"/>
+<path d="M185 256C202 277 220 294 240 299C248 301 253 295 256 288"/>
+<path d="M327 256C310 277 292 294 272 299C264 301 259 295 256 288"/>
+</g>
+<g stroke="#9b1828" stroke-width="4" fill="none">
+<path d="M178 256L218 256M334 256L294 256"/>
+<path d="M202 246L218 256L202 266M310 246L294 256L310 266"/>
+</g>
+<circle cx="256" cy="256" r="13" fill="#9b1828" stroke="#0b0809" stroke-width="3"/>
+<g fill="#d8c9b6"><path d="M256 69l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/><path d="M443 256l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/><path d="M256 443l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/><path d="M69 256l5 13 14 2-10 9 2 14-11-7-11 7 2-14-10-9 14-2z"/></g>
+</svg>
