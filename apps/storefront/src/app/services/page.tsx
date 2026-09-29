@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 const services = [
-  { id: 'love', icon: '⛧', title: 'المحبة والعطف والتهييج', short: 'أعمال المحبة والعطف والتهييج', price: 19.9 },
+  { id: 'love', icon: '/icons/tahyij.svg', title: 'المحبة والعطف والتهييج', short: 'أعمال المحبة والعطف والتهييج', price: 19.9 },
   { id: 'reconcile', icon: '◈', title: 'الوصال والتقريب', short: 'أعمال الوصال والتقريب', price: 24.9 },
   { id: 'marriage', icon: '✦', title: 'الألفة والمودة', short: 'أعمال الألفة والمودة والقبول', price: 29.9 },
   { id: 'reading', icon: '☾', title: 'الطلاسم والنجوم', short: 'الأوفاق والطلاسم وأبواب النجوم', price: 14.9 },
@@ -39,7 +39,9 @@ export default function ServicesPage() {
               }`}
             >
               <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#18070b] text-xl text-[#d7c9b5]">{service.icon}</span>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#18070b] text-xl text-[#d7c9b5]">
+                  {service.icon.startsWith('/') ? <img src={service.icon} alt="" className="h-11 w-11 object-contain" /> : service.icon}
+                </span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-bold">{service.title}</span>
                   <span className="mt-1 block truncate text-xs text-[#756963]">{service.short}</span>
