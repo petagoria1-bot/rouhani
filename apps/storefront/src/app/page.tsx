@@ -9,18 +9,18 @@ const services = [
 
 export default function Home() {
   return (
-    <div>
+    <div className="horror-vignette">
       <section className="relative overflow-hidden border-b border-[#3b151a]">
         <div className="absolute inset-0 ornament opacity-30" />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <div className="max-w-3xl">
-            <span className="inline-flex rounded-full border border-[#7f0b18]/40 bg-[#7f0b18]/20 px-4 py-2 text-sm text-[#d7c9b5]">
-              ✦ منصة روحانية عربية رقمية
+        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+          <div className="max-w-3xl relative z-10">
+            <span className="inline-flex rounded-full border border-[#7f0b18]/50 bg-black/50 px-4 py-2 text-sm text-[#d7c9b5] tracking-wide">
+              ⛧ مخطوطات روحانية — طقوس رمزية
             </span>
             <h1 className="mt-7 text-5xl font-black leading-tight tracking-tight sm:text-6xl">
-              مساحة هادئة لـ
+              لا تدخل هنا
               <span className="block bg-gradient-to-l from-[#e2b8ad] via-[#c7a69b] to-[#8f0d1b] bg-clip-text text-transparent">
-                الروح، النية والتأمل
+                les rites, les symboles et les ombres
               </span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-9 text-[#bcaea4]">
@@ -39,9 +39,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-16 grid max-w-4xl grid-cols-2 gap-4 lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px]">
-            {['🌙 النية', '✨ الرموز', '🪬 التأمل', '📜 ملف PDF'].map((item) => (
-              <div key={item} className="rounded-3xl border border-[#3b151a] occult-card p-7 text-center backdrop-blur">
+          <div className="mt-16 flex flex-col items-center gap-8 lg:absolute lg:left-8 lg:top-20 lg:mt-0 lg:w-[430px]" lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px]">
+            {['☾ النية', '⛧ الرموز', '◈ الطقوس', '✦ المخطوطات'].map((item) => (
+              <div key={item} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-7 text-center backdrop-blur">
                 <div className="text-3xl">{item.split(' ')[0]}</div>
                 <div className="mt-3 font-semibold text-[#d7c9b5]">{item.slice(2)}</div>
               </div>
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <span className="text-sm font-bold occult-red">خدمات مختارة</span>
@@ -60,7 +60,7 @@ export default function Home() {
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
-            <Link key={service.title} href="/services" className="group rounded-3xl border border-[#3b151a] occult-card p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7f0b18]/50 hover:occult-button/[0.06]">
+            <Link key={service.title} href="/services" className="group rounded-3xl border border-[#3b151a] occult-card horror-card p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7f0b18]/50 hover:occult-button/[0.06]">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-2xl">{service.icon}</div>
               <h3 className="mt-5 text-lg font-bold">{service.title}</h3>
               <p className="mt-3 min-h-14 text-sm leading-7 text-[#8f8177]">{service.text}</p>
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="how" className="border-y border-[#3b151a] bg-[#10070a]">
+      <section id="how" className="border-y border-[#3b151a] bg-[#070407] horror-vignette">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <div className="max-w-2xl">
             <span className="text-sm font-bold text-[#b69a8c]">بسيطة وواضحة</span>
@@ -92,11 +92,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-6 py-20 text-center">
-        <div className="rounded-[2rem] border border-[#7f0b18]/35 bg-gradient-to-br from-[#7f0b18]/14 to-[#26070d]/20 p-10">
-          <div className="text-4xl">✦</div>
-          <h2 className="mt-4 text-3xl font-black">ابدأ تجربتك الآن</h2>
-          <p className="mx-auto mt-4 max-w-xl leading-8 text-[#8f8177]">واجهة عربية بالكامل، طلبات رقمية، وملفات PDF مخصصة في مكان واحد.</p>
+      <section className="mx-auto max-w-5xl px-6 py-24 text-center">
+        <div className="rounded-[2rem] border border-[#7f0b18]/40 bg-[#090407] p-10 occult-glow horror-card">
+          <div className="mx-auto horror-seal" aria-hidden="true" />
+          <h2 className="mt-4 text-3xl font-black">هل تجرؤ على فتح المخطوطة؟</h2>
+          <p className="mx-auto mt-4 max-w-xl leading-8 text-[#8f8177]">مخطوطات رقمية مستوحاة من تقاليد الطلاسم القديمة، مصممة كأعمال رمزية غامضة داخل تجربة مظلمة.</p>
           <Link href="/services" className="mt-7 inline-flex rounded-2xl bg-white px-7 py-4 font-bold text-[#12070a] hover:bg-slate-100">
             اختيار خدمة
           </Link>
