@@ -40,10 +40,17 @@ export default function Home() {
           </div>
 
           <div className="mt-16 flex flex-col items-center gap-8 lg:absolute lg:left-8 lg:top-28 lg:mt-0 lg:w-[430px]">
-            {['⛧ السحر', '◈ الطلاسم', '✦ الأوفاق', '☾ النجوم'].map((item) => (
-              <div key={item} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-7 text-center backdrop-blur">
-                <div className="text-3xl">{item.split(' ')[0]}</div>
-                <div className="mt-3 font-semibold text-[#d7c9b5]">{item.slice(2)}</div>
+            {[
+              ['/icons/sihr.svg', 'السحر'],
+              ['/icons/talismans.svg', 'الطلاسم'],
+              ['✦', 'الأوفاق'],
+              ['☾', 'النجوم'],
+            ].map(([icon, label]) => (
+              <div key={label} className="rounded-3xl border border-[#3b151a] occult-card horror-card p-7 text-center backdrop-blur">
+                <div className="flex h-16 items-center justify-center text-3xl">
+                  {icon.startsWith('/') ? <img src={icon} alt="" className="h-16 w-16 object-contain" /> : icon}
+                </div>
+                <div className="mt-3 font-semibold text-[#d7c9b5]">{label}</div>
               </div>
             ))}
           </div>
