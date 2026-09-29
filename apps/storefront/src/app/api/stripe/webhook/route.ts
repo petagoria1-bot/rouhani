@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createHmac, timingSafeEqual } from 'crypto';
+import { isSupabaseConfigured, registerWebhookEvent, updateOrderBySession } from '@/lib/supabase-admin';
 
 export const runtime = 'nodejs';
 
@@ -46,6 +47,10 @@ export async function POST(request: Request) {
   }
 
   try {
+    if (!isSupabaseConfigured()) {
+      return NextResponse.json({ error: 'Supabase non configuré.' }, { status: 503 });
+    }
+
     const event = JSON.parse(payload);
     const session = event?.data?.object;
 
@@ -58,13 +63,18 @@ export async function POST(request: Request) {
       case 'checkout.session.async_payment_succeeded': {
         const paymentStatus = session.payment_status;
         if (paymentStatus === 'paid') {
+          await updateOrderBySession(session.id, {
+            stripe_payment_intent_id: session.payment_intent ?? null,
+            payment_status: 'paid',
+            order_status: 'paid',
+            paid_at: new Date().toISOString(),
+          });
+
           console.log('STRIPE_PAYMENT_CONFIRMED', {
             eventId: event.id,
             sessionId: session.id,
             paymentIntent: session.payment_intent ?? null,
             serviceId: session.metadata?.service_id ?? null,
-            serviceName: session.metadata?.service_name ?? null,
-            customerName: session.metadata?.name ?? null,
           });
         }
         break;
@@ -72,6 +82,11 @@ export async function POST(request: Request) {
 
       case 'checkout.session.async_payment_failed':
       case 'checkout.session.expired':
+        await updateOrderBySession(session.id, {
+          payment_status: event.type === 'checkout.session.expired' ? 'expired' : 'failed',
+          order_status: 'cancelled',
+        });
+
         console.log('STRIPE_PAYMENT_NOT_COMPLETED', {
           eventId: event.id,
           sessionId: session.id,
@@ -84,6 +99,7 @@ export async function POST(request: Request) {
         break;
     }
 
+    await registerWebhookEvent(event.id, event.type);
     return NextResponse.json({ received: true });
   } catch (error) {
     console.error('Stripe webhook error', error);
